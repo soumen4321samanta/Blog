@@ -1,0 +1,156 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #2c09effe; /* Primary blue */
+    padding: 15px;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffdd57; /* Light yellow for hover */
+}
+
+header {
+    background-color: #0056b3; /* Darker blue for header */
+    color: #fff;
+    padding: 50px 0;
+    text-align: center;
+}
+
+/* Container settings */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Form Styling for Signin and Signup Pages */
+.auth-form {
+    max-width: 500px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.auth-form .form-group {
+    margin-bottom: 15px;
+}
+
+.auth-form .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccd1d9; /* Light gray */
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+.auth-form .form-control:focus {
+    border-color: #007bff; /* Primary blue on focus */
+}
+
+.auth-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff; /* Primary blue */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.auth-form button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* About Page Styling */
+.about-page {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-page h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #333;
+}
+
+.about-page p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Contact Form Styling */
+.contact-form {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form .form-group {
+    margin-bottom: 15px;
+}
+
+.contact-form .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccd1d9; /* Light gray */
+    border-radius: 5px;
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff; /* Primary blue */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Footer */
+footer {
+    background-color: #054376; /* Darker blue for footer */
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    /* position: fixed; */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .auth-form, .about-page, .contact-form {
+        padding: 15px;
+    }
+
+    .navbar-nav .nav-link {
+        margin-right: 0;
+        text-align: center;
+    }
+}

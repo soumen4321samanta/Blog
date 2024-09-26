@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    .global-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        padding: 20px;
+    }
+    .card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 40px;
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+    }
+    .card-title {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    .card-text {
+        color: #666;
+        font-size: 18px;
+        line-height: 1.5;
+    }
+    .icon {
+        font-size: 48px;
+        margin-bottom: 20px;
+    }
+    @media (max-width: 480px) {
+        .card {
+            padding: 20px;
+        }
+        .card-title {
+            font-size: 20px;
+        }
+        .card-text {
+            font-size: 16px;
+        }
+    }
+</style>
+
+<div class="global-container">
+    <div class="card login-form">
+        <div class="icon">✉️</div>
+        <h1 class="card-title text-center">We have sent an email to you</h1>
+        <div class="card-text text-center">
+            <h3>Please check your email</h3>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,298 @@
+
+
+{% extends 'base.html' %}
+{% block title %}SignUp Page{% endblock %}
+
+{% block styles %}
+<style>
+    :root {
+        --primary-color: #4a90e2;
+        --secondary-color: #f5f5f5;
+        --accent-color: #ff6b6b;
+        --text-color: #333;
+        --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--secondary-color);
+    }
+
+    .bg-custom-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 4rem 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .bg-custom-header::after {
+        content: '';
+        position: absolute;
+        bottom: -50px;
+        left: 0;
+        right: 0;
+        height: 100px;
+        background: var(--secondary-color);
+        transform: skewY(-3deg);
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        margin-top: 30px;
+        padding: 0 15px;
+        position: relative;
+        z-index: 1;
+    }
+
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .lead {
+        font-size: 1.2rem;
+        opacity: 0.9;
+    }
+
+    main {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 10px 20px var(--shadow-color);
+        padding: 2rem;
+        margin-top: -3rem;
+        position: relative;
+    }
+
+    .auth-form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: var(--primary-color);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+    }
+
+    .error-message {
+        color: var(--accent-color);
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        display: none;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.1s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #3a7abd;
+        transform: translateY(-2px);
+    }
+
+    .btn-primary:active {
+        transform: translateY(0);
+    }
+
+    .create-account {
+        display: block;
+        text-align: center;
+        margin-top: 1rem;
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    .create-account:hover {
+        color: #3a7abd;
+    }
+
+    .messages {
+        list-style-type: none;
+        padding: 0;
+        margin-bottom: 1rem;
+    }
+
+    .messages li {
+        padding: 0.5rem;
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+    }
+
+    .messages .error {
+        background-color: #ffe6e6;
+        border: 1px solid #ffcccc;
+        color: #cc0000;
+    }
+
+    .messages .success {
+        background-color: #e6ffe6;
+        border: 1px solid #ccffcc;
+        color: #006600;
+    }
+
+    @media (max-width: 768px) {
+        .bg-custom-header {
+            padding: 3rem 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        main {
+            margin-top: -2rem;
+            padding: 1.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .bg-custom-header {
+            padding: 2rem 0;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        .lead {
+            font-size: 1rem;
+        }
+
+        main {
+            margin-top: -1.5rem;
+            padding: 1rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <header class="bg-custom-header text-white text-center py-5">
+        <div class="container">
+            <h1>Sign Up</h1>
+            <p class="lead">Join our community today</p>
+        </div>
+    </header>
+
+    <main class="container mt-5">
+        <form id="signupForm" class="auth-form" novalidate action="{% url 'signup' %}" method="POST">
+        {% csrf_token %}
+        
+            {% if messages %}
+            <ul class="messages">
+              {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" class="form-control" id="name" name="fullname"
+                placeholder="Enter your full name" required>
+                <span class="error-message" id="nameError">Name is required</span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                <span class="error-message" id="emailError">Please enter a valid email address</span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter your password" name="pass1" required minlength="8">
+                <span class="error-message" id="passwordError">Password must be at least 8 characters</span>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <a href="{% url 'signin' %}" class="create-account">Already have an account? Sign in</a>
+        </form>
+    </main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission for validation
+        let isValid = true;
+
+        // Name validation
+        const name = document.getElementById('name');
+        if (name.value.trim() === '') {
+            isValid = false;
+            document.getElementById('nameError').style.display = 'block';
+        } else {
+            document.getElementById('nameError').style.display = 'none';
+        }
+
+        // Email validation
+        const email = document.getElementById('email');
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email.value)) {
+            isValid = false;
+            document.getElementById('emailError').style.display = 'block';
+        } else {
+            document.getElementById('emailError').style.display = 'none';
+        }
+
+        // Mobile number validation
+        // const mobile = document.getElementById('mobile');
+        // const mobilePattern = /^[0-9]{10}$/;
+        // if (!mobilePattern.test(mobile.value)) {
+        //     isValid = false;
+        //     document.getElementById('mobileError').style.display = 'block';
+        // } else {
+        //     document.getElementById('mobileError').style.display = 'none';
+        // }
+
+        // Password validation
+        const password = document.getElementById('password');
+        if (password.value.length < 8) {
+            isValid = false;
+            document.getElementById('passwordError').style.display = 'block';
+        } else {
+            document.getElementById('passwordError').style.display = 'none';
+        }
+
+        // If all validations pass, submit the form
+        if (isValid) {
+            alert('Form is valid! Submitting...');
+            // You can submit the form here using AJAX or just remove the preventDefault()
+            event.target.submit(); // Uncomment if you want to submit after validation
+        }
+    });
+</script>
+{% endblock %}

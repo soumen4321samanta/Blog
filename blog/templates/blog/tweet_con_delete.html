@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<style>
+    :root {
+        --primary-color: #1da1f2;
+        --danger-color: #e0245e;
+        --background-color: #f5f8fa;
+        --card-background: #ffffff;
+        --text-color: #14171a;
+        --text-muted: #657786;
+        --border-color: #e1e8ed;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    .global-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: var(--card-background);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .global-container:hover {
+        transform: translateY(-5px);
+    }
+
+    h2 {
+        color: var(--danger-color);
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .messages {
+        list-style-type: none;
+        padding: 0;
+        margin-bottom: 1rem;
+    }
+
+    .messages li {
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        font-weight: 500;
+    }
+
+    .messages .success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .messages .error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    .tweet-content {
+        background-color: #f1f3f4;
+        border-left: 4px solid var(--primary-color);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 0 5px 5px 0;
+        font-style: italic;
+        transition: background-color 0.3s ease;
+    }
+
+    .tweet-content:hover {
+        background-color: #e8eaed;
+    }
+
+    .btn {
+        display: inline-block;
+        font-weight: 600;
+        text-align: center;
+        vertical-align: middle;
+        user-select: none;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 9999px;
+        transition: all 0.15s ease-in-out;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+
+    .btn-danger {
+        color: #fff;
+        background-color: var(--danger-color);
+        border: none;
+    }
+
+    .btn-danger:hover {
+        background-color: #c0392b;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-secondary {
+        color: var(--text-color);
+        background-color: #f1f3f4;
+        border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+        background-color: #e8eaed;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+        .global-container {
+            margin: 30px 20px;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .global-container {
+            margin: 20px 10px;
+            padding: 15px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        .tweet-content {
+            font-size: 0.9rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="global-container">
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <h2>Are you sure you want to delete this tweet?</h2>
+    
+    <div class="tweet-content">
+        <p><strong>{{ tweet.text }}</strong></p>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes, delete</button>
+        <a href="{% url 'tweet_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

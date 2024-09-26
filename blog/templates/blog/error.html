@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="global-container">
+    <div class="card login-form">
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+        <h1 class="card-title text-center">error</h1>
+        <a href="/" class="btn btn-success">back</a>
+    </div>
+
+</div>
+{% endblock %}

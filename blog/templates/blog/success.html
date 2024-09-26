@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="global-container">
+    <div class="card login-form">
+        
+        <h1 class="card-title text-center">success your email is verified</h1>
+        <div class="card-text text-center">
+            <h3>please login </h3>
+            
+        </div>
+        <a href="{% url 'signin' %}" class="btn btn-primary">signin</a>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Contact-Page{% endblock %}
+
+{% block content %}
+
+    <header class="bg-custom-header text-white text-center py-5">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p class="lead">This is the Contact Us Page</p>
+        </div>
+    </header>
+
+    <main class="container mt-5">
+        <!-- Begin the form -->
+        <form method="POST" class="contact-form">
+            {% csrf_token %}  <!-- CSRF token for security -->
+            
+            <!-- Display Django form -->
+            {{ form.as_p }}
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+    </main>
+
+{% endblock %}

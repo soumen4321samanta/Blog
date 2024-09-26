@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+{% block title %}About-Page{% endblock %}
+
+{% block styles %}
+<style>
+    :root {
+        --primary-color: #4a90e2;
+        --secondary-color: #f5a623;
+        --background-color: #f9f9f9;
+        --text-color: #333333;
+        --text-light: #ffffff;
+        --text-muted: #777777;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    .bg-custom-header {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        position: relative;
+        overflow: hidden;
+    }
+
+    .bg-custom-header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px);
+        background-size: 20px 20px;
+        transform: rotate(30deg);
+        animation: headerAnimation 60s linear infinite;
+    }
+
+    @keyframes headerAnimation {
+        0% { transform: rotate(30deg) translateY(0); }
+        100% { transform: rotate(30deg) translateY(-50%); }
+    }
+
+    .header-content {
+        position: relative;
+        z-index: 1;
+        padding: 6rem 0;
+    }
+
+    .profile-pic {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border: 5px solid var(--text-light);
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .lead {
+        font-size: 1.5rem;
+        font-weight: 300;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .about-page {
+        background-color: var(--text-light);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        padding: 3rem;
+        margin-bottom: 3rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .about-page::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, var(--background-color) 10%, transparent 10%);
+        background-size: 20px 20px;
+        opacity: 0.1;
+        animation: bgAnimation 30s linear infinite;
+    }
+
+    @keyframes bgAnimation {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .about-page h2 {
+        color: var(--primary-color);
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+
+    .about-page h2::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 4px;
+        background-color: var(--secondary-color);
+        margin-top: 0.5rem;
+    }
+
+    .about-page p {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+        .header-content {
+            padding: 4rem 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        .lead {
+            font-size: 1.2rem;
+        }
+
+        .about-page {
+            padding: 2rem;
+        }
+
+        .about-page h2 {
+            font-size: 2rem;
+        }
+
+        .about-page p {
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .header-content {
+            padding: 3rem 0;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        .lead {
+            font-size: 1rem;
+        }
+
+        .about-page {
+            padding: 1.5rem;
+        }
+
+        .about-page h2 {
+            font-size: 1.75rem;
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<header class="bg-custom-header text-white text-center">
+    <div class="header-content">
+        <div class="container">
+            <!-- <img src="https://pics.craiyon.com/2023-07-15/dc2ec5a571974417a5551420a4fb0587.webp" alt="Profile Picture" class="rounded-circle mb-4 profile-pic"> -->
+            <h1 class="mb-3">About Us</h1>
+            <p class="lead">Discover Our Story and Mission</p>
+        </div>
+    </div>
+</header>
+
+<main class="container mt-5">
+    <section class="about-page">
+        <h2>Who We Are</h2>
+        <p>We are a passionate community of coders and learners, united by our love for technology and our desire to share knowledge. Our journey began with a simple idea: to create a blog that would serve as a beacon for those navigating the vast seas of coding and technology.</p>
+        
+        <p>At our core, we believe in the power of education and the transformative impact of sharing knowledge. We strive to inspire creativity, foster a sense of community, and provide a platform where ideas can flourish. Whether you're here to learn, explore, or connect, our goal is to enrich your experience and fuel your passion for technology.</p>
+        
+        <p>Our team is committed to delivering insightful, engaging, and relevant content that reflects our dedication to various aspects of technology, including:</p>
+        
+        <ul>
+            <li>Cutting-edge programming languages and frameworks</li>
+            <li>Web development trends and best practices</li>
+            <li>Data science and machine learning innovations</li>
+            <li>Cybersecurity awareness and techniques</li>
+            <li>Tech industry insights and career guidance</li>
+        </ul>
+        
+        <p>We invite you to join us on this exciting journey of discovery and growth. Together, let's explore the endless possibilities that technology offers and build a brighter, more connected future.</p>
+    </section>
+</main>
+{% endblock %}

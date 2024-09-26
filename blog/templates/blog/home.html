@@ -1,0 +1,271 @@
+{% extends 'base.html' %}
+{% block title %}Home-Page{% endblock %}
+
+{% block styles %}
+<style>
+    :root {
+        --primary-color: #4a90e2;
+        --secondary-color: #f5a623;
+        --background-color: #f9f9f9;
+        --card-background: #ffffff;
+        --text-color: #333333;
+        --text-muted: #777777;
+        --border-color: #e0e0e0;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    .bg-custom-header {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        padding: 6rem 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .bg-custom-header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: repeating-linear-gradient(45deg, #ffffff10, #ffffff10 10px, #ffffff20 10px, #ffffff20 20px);
+        animation: headerAnimation 20s linear infinite;
+    }
+
+    @keyframes headerAnimation {
+        0% { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
+        100% { transform: translateX(-50%) translateY(-50%) rotate(360deg); }
+    }
+
+    .profile-pic {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border: 5px solid #ffffff;
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    h1, h2 {
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .lead {
+        font-size: 1.25rem;
+        font-weight: 300;
+    }
+
+    .btn {
+        border-radius: 30px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .btn-success {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+        color: #ffffff;
+    }
+
+    .btn-success:hover {
+        background-color: #e09400;
+        border-color: #e09400;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .card-title {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .card-text {
+        color: var(--text-color);
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .text-muted {
+        color: var(--text-muted) !important;
+    }
+
+    .btn-primary, .btn-danger {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+    .btn-primary:hover {
+        background-color: #3a80d2;
+        border-color: #3a80d2;
+    }
+
+    .btn-danger {
+        background-color: #e74c3c;
+        border-color: #e74c3c;
+    }
+
+    .btn-danger:hover {
+        background-color: #c0392b;
+        border-color: #c0392b;
+    }
+
+    .read-more {
+        background-color: transparent;
+        color: var(--primary-color);
+        border: 2px solid var(--primary-color);
+    }
+
+    .read-more:hover {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    #about {
+        background-color: #ffffff;
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 768px) {
+        .bg-custom-header {
+            padding: 4rem 0;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        .lead {
+            font-size: 1.1rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            font-size: 0.85rem;
+            padding: 0.6rem 1.2rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .bg-custom-header {
+            padding: 3rem 0;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+        }
+
+        .lead {
+            font-size: 1rem;
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        #about {
+            padding: 1.5rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<header class="bg-custom-header text-white text-center py-5">
+    <div class="container">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <!-- <img src="https://pics.craiyon.com/2023-07-15/dc2ec5a571974417a5551420a4fb0587.webp" alt="Profile Picture" class="rounded-circle mb-3 profile-pic"> -->
+        <h1 class="display-4 mb-3">Welcome to My Blog</h1>
+        <p class="lead">Sharing my thoughts and experiences</p>
+    </div>
+</header>
+
+
+<main class="container mt-5">
+    <div class="text-center mb-5">
+        <a href="{% url 'tweet_create' %}" class="btn btn-success btn-lg">Create New Post</a>
+    </div>
+    
+    <section id="home">
+        <h2 class="mb-4 text-center">Recent Posts</h2>
+        <div class="row">
+        {% for tweet in tweets %}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{tweet.title}}</h5>
+                        <p class="card-text text-muted">Posted on: {{tweet.created_at|date:"F d, Y"}}</p>
+                        <p class="card-text summary flex-grow-1">{{tweet.summary}}</p>
+                        <p class="card-text full-post d-none">{{tweet.text}}</p>
+                        <div class="mt-auto">
+                            {% if request.user.is_authenticated and request.user == tweet.user %}
+                            <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary mr-2">Edit</a>
+                            <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger mr-2">Delete</a>
+                            {% endif %}
+                            <a href="#" class="btn btn-primary read-more">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </section>
+
+    <section id="about" class="mt-5">
+        <h2 class="text-center mb-4">About Us</h2>
+        <p>We are passionate about learning and sharing code. Our goal is to create a vibrant and informative blog community. We believe in sharing knowledge, inspiring creativity, and fostering a sense of community among our readers. Whether you are here to learn, explore, or connect, we aim to provide valuable content that enriches your experience. Our team is committed to delivering insightful, engaging, and relevant articles that reflect our dedication to technology, education, and personal growth.</p>
+    </section>
+</main>
+{% endblock %}
